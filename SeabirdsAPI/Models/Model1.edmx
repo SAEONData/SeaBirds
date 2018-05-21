@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SEABIRDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cruise">
+          <Key>
+            <PropertyRef Name="CruiseID" />
+          </Key>
+          <Property Name="CruiseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CruiseRef" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VesselID" Type="int" />
+          <Property Name="PortLeave" Type="varchar" MaxLength="255" />
+          <Property Name="PortReturn" Type="varchar" MaxLength="255" />
+          <Property Name="DateLeave" Type="datetime" />
+          <Property Name="DateReturn" Type="datetime" />
+          <Property Name="InsertTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Observation">
+          <Key>
+            <PropertyRef Name="ObservationID" />
+          </Key>
+          <Property Name="ObservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CruiseID" Type="int" />
+          <Property Name="TransectID" Type="int" />
+          <Property Name="SpeciesID" Type="int" />
+          <Property Name="Present" Type="varchar" MaxLength="5" />
+          <Property Name="Flying" Type="int" />
+          <Property Name="Sitting" Type="int" />
+          <Property Name="InsertTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Observer">
+          <Key>
+            <PropertyRef Name="ObserverID" />
+          </Key>
+          <Property Name="ObserverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="255" />
+          <Property Name="Experience" Type="varchar" MaxLength="50" />
+          <Property Name="InsertTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CruiseID" Type="int" Nullable="false" />
+          <Property Name="ObserverID" Type="int" />
+          <Property Name="ObserverNo" Type="int" />
+          <Property Name="ShipDuty" Type="varchar" MaxLength="50" />
+          <Property Name="InsertTimeStamp" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Species">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SAFRING_No" Type="int" />
+          <Property Name="Taxonomic_Genus" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxonomic_Species" Type="nvarchar" MaxLength="255" />
+          <Property Name="English_Genus" Type="nvarchar" MaxLength="255" />
+          <Property Name="English_Species" Type="nvarchar" MaxLength="255" />
+          <Property Name="Old" Type="float" />
+          <Property Name="Taxon_order" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxon_family" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taxon_group" Type="nvarchar" MaxLength="255" />
+          <Property Name="Continent" Type="nvarchar" MaxLength="255" />
+          <Property Name="Region" Type="nvarchar" MaxLength="255" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project" Type="nvarchar" MaxLength="255" />
+          <Property Name="LegendColor" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FamilyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BirdLifeID" Type="nvarchar" MaxLength="255" />
+          <Property Name="IUCNRedListCat" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Transect">
+          <Key>
+            <PropertyRef Name="TransectID" />
+          </Key>
+          <Property Name="TransectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransectRef" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CruiseID" Type="int" />
+          <Property Name="DataSourceID" Type="int" />
+          <Property Name="TransectNo" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="TimeStart" Type="datetime" />
+          <Property Name="TimeEnd" Type="datetime" />
+          <Property Name="Observer1ID" Type="int" />
+          <Property Name="Observer2ID" Type="int" />
+          <Property Name="CountType" Type="varchar" MaxLength="50" />
+          <Property Name="WindDirection" Type="varchar" MaxLength="50" />
+          <Property Name="WindDirection_deg" Type="float" />
+          <Property Name="WindStrength_kmph" Type="varchar" MaxLength="50" />
+          <Property Name="CloudCover" Type="varchar" MaxLength="10" />
+          <Property Name="Visibility_m" Type="varchar" MaxLength="10" />
+          <Property Name="Precipitation" Type="varchar" MaxLength="50" />
+          <Property Name="CountingShipFollowers" Type="varchar" MaxLength="50" />
+          <Property Name="SwellHeight_m" Type="float" />
+          <Property Name="CoordinateSystem" Type="varchar" MaxLength="100" />
+          <Property Name="LatitudeStart" Type="float" />
+          <Property Name="LongitudeStart" Type="float" />
+          <Property Name="LatitudeEnd" Type="float" />
+          <Property Name="LongitudeEnd" Type="float" />
+          <Property Name="CountArea" Type="int" />
+          <Property Name="ArcFromBow" Type="int" />
+          <Property Name="PositionOnVessel" Type="varchar" MaxLength="50" />
+          <Property Name="InsertTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vessel">
+          <Key>
+            <PropertyRef Name="VesselID" />
+          </Key>
+          <Property Name="VesselID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="InsertTimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cruise_Vessel">
+          <End Role="Vessel" Type="Self.Vessel" Multiplicity="0..1" />
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vessel">
+              <PropertyRef Name="VesselID" />
+            </Principal>
+            <Dependent Role="Cruise">
+              <PropertyRef Name="VesselID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Cruise">
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cruise">
+              <PropertyRef Name="CruiseID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="CruiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Species">
+          <End Role="Species" Type="Self.Species" Multiplicity="0..1" />
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Species">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="SpeciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Transect">
+          <End Role="Transect" Type="Self.Transect" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transect">
+              <PropertyRef Name="TransectID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="TransectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipboard_Cruise">
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Shipboard" Type="Self.Shipboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cruise">
+              <PropertyRef Name="CruiseID" />
+            </Principal>
+            <Dependent Role="Shipboard">
+              <PropertyRef Name="CruiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipboard_Observer">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Shipboard" Type="Self.Shipboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Shipboard">
+              <PropertyRef Name="ObserverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transect_Observer">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Transect" Type="Self.Transect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Transect">
+              <PropertyRef Name="Observer1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transect_Observer1">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Transect" Type="Self.Transect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Transect">
+              <PropertyRef Name="Observer2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SEABIRDSModelStoreContainer">
+          <EntitySet Name="Cruise" EntityType="Self.Cruise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Observation" EntityType="Self.Observation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Observer" EntityType="Self.Observer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipboard" EntityType="Self.Shipboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Species" EntityType="Self.Species" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transect" EntityType="Self.Transect" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vessel" EntityType="Self.Vessel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cruise_Vessel" Association="Self.FK_Cruise_Vessel">
+            <End Role="Vessel" EntitySet="Vessel" />
+            <End Role="Cruise" EntitySet="Cruise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Cruise" Association="Self.FK_Observation_Cruise">
+            <End Role="Cruise" EntitySet="Cruise" />
+            <End Role="Observation" EntitySet="Observation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Species" Association="Self.FK_Observation_Species">
+            <End Role="Species" EntitySet="Species" />
+            <End Role="Observation" EntitySet="Observation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Transect" Association="Self.FK_Observation_Transect">
+            <End Role="Transect" EntitySet="Transect" />
+            <End Role="Observation" EntitySet="Observation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipboard_Cruise" Association="Self.FK_Shipboard_Cruise">
+            <End Role="Cruise" EntitySet="Cruise" />
+            <End Role="Shipboard" EntitySet="Shipboard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipboard_Observer" Association="Self.FK_Shipboard_Observer">
+            <End Role="Observer" EntitySet="Observer" />
+            <End Role="Shipboard" EntitySet="Shipboard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transect_Observer" Association="Self.FK_Transect_Observer">
+            <End Role="Observer" EntitySet="Observer" />
+            <End Role="Transect" EntitySet="Transect" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transect_Observer1" Association="Self.FK_Transect_Observer1">
+            <End Role="Observer" EntitySet="Observer" />
+            <End Role="Transect" EntitySet="Transect" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SEABIRDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cruise">
+          <Key>
+            <PropertyRef Name="CruiseID" />
+          </Key>
+          <Property Name="CruiseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CruiseRef" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VesselID" Type="Int32" />
+          <Property Name="PortLeave" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PortReturn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DateLeave" Type="DateTime" Precision="3" />
+          <Property Name="DateReturn" Type="DateTime" Precision="3" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Nullable="false" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Vessel" Relationship="Self.FK_Cruise_Vessel" FromRole="Cruise" ToRole="Vessel" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Observations" Relationship="Self.FK_Observation_Cruise" FromRole="Cruise" ToRole="Observation" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Shipboards" Relationship="Self.FK_Shipboard_Cruise" FromRole="Cruise" ToRole="Shipboard" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Observation">
+          <Key>
+            <PropertyRef Name="ObservationID" />
+          </Key>
+          <Property Name="ObservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CruiseID" Type="Int32" />
+          <Property Name="TransectID" Type="Int32" />
+          <Property Name="SpeciesID" Type="Int32" />
+          <Property Name="Present" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Flying" Type="Int32" />
+          <Property Name="Sitting" Type="Int32" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Nullable="false" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Cruise" Relationship="Self.FK_Observation_Cruise" FromRole="Observation" ToRole="Cruise" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Species" Relationship="Self.FK_Observation_Species" FromRole="Observation" ToRole="Species" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Transect" Relationship="Self.FK_Observation_Transect" FromRole="Observation" ToRole="Transect" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Observer">
+          <Key>
+            <PropertyRef Name="ObserverID" />
+          </Key>
+          <Property Name="ObserverID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Nullable="false" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Shipboards" Relationship="Self.FK_Shipboard_Observer" FromRole="Observer" ToRole="Shipboard" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Transects" Relationship="Self.FK_Transect_Observer" FromRole="Observer" ToRole="Transect" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Transects1" Relationship="Self.FK_Transect_Observer1" FromRole="Observer" ToRole="Transect" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Shipboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CruiseID" Type="Int32" Nullable="false" />
+          <Property Name="ObserverID" Type="Int32" />
+          <Property Name="ObserverNo" Type="Int32" />
+          <Property Name="ShipDuty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Cruise" Relationship="Self.FK_Shipboard_Cruise" FromRole="Shipboard" ToRole="Cruise" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Observer" Relationship="Self.FK_Shipboard_Observer" FromRole="Shipboard" ToRole="Observer" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Species">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <Property Name="SAFRING_No" Type="Int32" />
+          <Property Name="Taxonomic_Genus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxonomic_Species" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="English_Genus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="English_Species" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Old" Type="Double" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <Property Name="Taxon_order" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxon_family" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Taxon_group" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Continent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LegendColor" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FamilyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BirdLifeID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IUCNRedListCat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Observations" Relationship="Self.FK_Observation_Species" FromRole="Species" ToRole="Observation" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Transect">
+          <Key>
+            <PropertyRef Name="TransectID" />
+          </Key>
+          <Property Name="TransectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="TransectRef" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CruiseID" Type="Int32" />
+          <Property Name="DataSourceID" Type="Int32" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <Property Name="TransectNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="TimeStart" Type="DateTime" Precision="3" />
+          <Property Name="TimeEnd" Type="DateTime" Precision="3" />
+          <Property Name="Observer1ID" Type="Int32" />
+          <Property Name="Observer2ID" Type="Int32" />
+          <Property Name="CountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WindDirection" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WindDirection_deg" Type="Double" />
+          <Property Name="WindStrength_kmph" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CloudCover" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Visibility_m" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Precipitation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountingShipFollowers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SwellHeight_m" Type="Double" />
+          <Property Name="CoordinateSystem" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LatitudeStart" Type="Double" />
+          <Property Name="LongitudeStart" Type="Double" />
+          <Property Name="LatitudeEnd" Type="Double" />
+          <Property Name="LongitudeEnd" Type="Double" />
+          <Property Name="CountArea" Type="Int32" />
+          <Property Name="ArcFromBow" Type="Int32" />
+          <Property Name="PositionOnVessel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Nullable="false" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Observations" Relationship="Self.FK_Observation_Transect" FromRole="Transect" ToRole="Observation" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Observer" Relationship="Self.FK_Transect_Observer" FromRole="Transect" ToRole="Observer" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+          <NavigationProperty Name="Observer1" Relationship="Self.FK_Transect_Observer1" FromRole="Transect" ToRole="Observer" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <EntityType Name="Vessel">
+          <Key>
+            <PropertyRef Name="VesselID" />
+          </Key>
+          <Property Name="VesselID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InsertTimeStamp" Type="DateTime" Nullable="false" Precision="3" a:SetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Cruises" Relationship="Self.FK_Cruise_Vessel" FromRole="Vessel" ToRole="Cruise" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Internal" />
+        </EntityType>
+        <Association Name="FK_Cruise_Vessel">
+          <End Role="Vessel" Type="Self.Vessel" Multiplicity="0..1" />
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vessel">
+              <PropertyRef Name="VesselID" />
+            </Principal>
+            <Dependent Role="Cruise">
+              <PropertyRef Name="VesselID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Cruise">
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cruise">
+              <PropertyRef Name="CruiseID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="CruiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipboard_Cruise">
+          <End Role="Cruise" Type="Self.Cruise" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Shipboard" Type="Self.Shipboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cruise">
+              <PropertyRef Name="CruiseID" />
+            </Principal>
+            <Dependent Role="Shipboard">
+              <PropertyRef Name="CruiseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Species">
+          <End Role="Species" Type="Self.Species" Multiplicity="0..1" />
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Species">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="SpeciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Observation_Transect">
+          <End Role="Transect" Type="Self.Transect" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Observation" Type="Self.Observation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transect">
+              <PropertyRef Name="TransectID" />
+            </Principal>
+            <Dependent Role="Observation">
+              <PropertyRef Name="TransectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipboard_Observer">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Shipboard" Type="Self.Shipboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Shipboard">
+              <PropertyRef Name="ObserverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transect_Observer">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Transect" Type="Self.Transect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Transect">
+              <PropertyRef Name="Observer1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transect_Observer1">
+          <End Role="Observer" Type="Self.Observer" Multiplicity="0..1" />
+          <End Role="Transect" Type="Self.Transect" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Observer">
+              <PropertyRef Name="ObserverID" />
+            </Principal>
+            <Dependent Role="Transect">
+              <PropertyRef Name="Observer2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SEABIRDSEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cruises" EntityType="Self.Cruise" />
+          <EntitySet Name="Observations" EntityType="Self.Observation" />
+          <EntitySet Name="Observers" EntityType="Self.Observer" />
+          <EntitySet Name="Shipboards" EntityType="Self.Shipboard" />
+          <EntitySet Name="Species" EntityType="Self.Species" />
+          <EntitySet Name="Transects" EntityType="Self.Transect" />
+          <EntitySet Name="Vessels" EntityType="Self.Vessel" />
+          <AssociationSet Name="FK_Cruise_Vessel" Association="Self.FK_Cruise_Vessel">
+            <End Role="Vessel" EntitySet="Vessels" />
+            <End Role="Cruise" EntitySet="Cruises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Cruise" Association="Self.FK_Observation_Cruise">
+            <End Role="Cruise" EntitySet="Cruises" />
+            <End Role="Observation" EntitySet="Observations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipboard_Cruise" Association="Self.FK_Shipboard_Cruise">
+            <End Role="Cruise" EntitySet="Cruises" />
+            <End Role="Shipboard" EntitySet="Shipboards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Species" Association="Self.FK_Observation_Species">
+            <End Role="Species" EntitySet="Species" />
+            <End Role="Observation" EntitySet="Observations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Observation_Transect" Association="Self.FK_Observation_Transect">
+            <End Role="Transect" EntitySet="Transects" />
+            <End Role="Observation" EntitySet="Observations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipboard_Observer" Association="Self.FK_Shipboard_Observer">
+            <End Role="Observer" EntitySet="Observers" />
+            <End Role="Shipboard" EntitySet="Shipboards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transect_Observer" Association="Self.FK_Transect_Observer">
+            <End Role="Observer" EntitySet="Observers" />
+            <End Role="Transect" EntitySet="Transects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transect_Observer1" Association="Self.FK_Transect_Observer1">
+            <End Role="Observer" EntitySet="Observers" />
+            <End Role="Transect" EntitySet="Transects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SEABIRDSModelStoreContainer" CdmEntityContainer="SEABIRDSEntities2">
+          <EntitySetMapping Name="Cruises">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Cruise">
+              <MappingFragment StoreEntitySet="Cruise">
+                <ScalarProperty Name="CruiseID" ColumnName="CruiseID" />
+                <ScalarProperty Name="CruiseRef" ColumnName="CruiseRef" />
+                <ScalarProperty Name="VesselID" ColumnName="VesselID" />
+                <ScalarProperty Name="PortLeave" ColumnName="PortLeave" />
+                <ScalarProperty Name="PortReturn" ColumnName="PortReturn" />
+                <ScalarProperty Name="DateLeave" ColumnName="DateLeave" />
+                <ScalarProperty Name="DateReturn" ColumnName="DateReturn" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Observations">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Observation">
+              <MappingFragment StoreEntitySet="Observation">
+                <ScalarProperty Name="ObservationID" ColumnName="ObservationID" />
+                <ScalarProperty Name="CruiseID" ColumnName="CruiseID" />
+                <ScalarProperty Name="TransectID" ColumnName="TransectID" />
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="Present" ColumnName="Present" />
+                <ScalarProperty Name="Flying" ColumnName="Flying" />
+                <ScalarProperty Name="Sitting" ColumnName="Sitting" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Observers">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Observer">
+              <MappingFragment StoreEntitySet="Observer">
+                <ScalarProperty Name="ObserverID" ColumnName="ObserverID" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipboards">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Shipboard">
+              <MappingFragment StoreEntitySet="Shipboard">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CruiseID" ColumnName="CruiseID" />
+                <ScalarProperty Name="ObserverID" ColumnName="ObserverID" />
+                <ScalarProperty Name="ObserverNo" ColumnName="ObserverNo" />
+                <ScalarProperty Name="ShipDuty" ColumnName="ShipDuty" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Species">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Species">
+              <MappingFragment StoreEntitySet="Species">
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="SAFRING_No" ColumnName="SAFRING_No" />
+                <ScalarProperty Name="Taxonomic_Genus" ColumnName="Taxonomic_Genus" />
+                <ScalarProperty Name="Taxonomic_Species" ColumnName="Taxonomic_Species" />
+                <ScalarProperty Name="English_Genus" ColumnName="English_Genus" />
+                <ScalarProperty Name="English_Species" ColumnName="English_Species" />
+                <ScalarProperty Name="Old" ColumnName="Old" />
+                <ScalarProperty Name="Taxon_order" ColumnName="Taxon_order" />
+                <ScalarProperty Name="Taxon_family" ColumnName="Taxon_family" />
+                <ScalarProperty Name="Taxon_group" ColumnName="Taxon_group" />
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="LegendColor" ColumnName="LegendColor" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="BirdLifeID" ColumnName="BirdLifeID" />
+                <ScalarProperty Name="IUCNRedListCat" ColumnName="IUCNRedListCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transects">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Transect">
+              <MappingFragment StoreEntitySet="Transect">
+                <ScalarProperty Name="TransectID" ColumnName="TransectID" />
+                <ScalarProperty Name="TransectRef" ColumnName="TransectRef" />
+                <ScalarProperty Name="CruiseID" ColumnName="CruiseID" />
+                <ScalarProperty Name="DataSourceID" ColumnName="DataSourceID" />
+                <ScalarProperty Name="TransectNo" ColumnName="TransectNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+                <ScalarProperty Name="Observer1ID" ColumnName="Observer1ID" />
+                <ScalarProperty Name="Observer2ID" ColumnName="Observer2ID" />
+                <ScalarProperty Name="CountType" ColumnName="CountType" />
+                <ScalarProperty Name="WindDirection" ColumnName="WindDirection" />
+                <ScalarProperty Name="WindDirection_deg" ColumnName="WindDirection_deg" />
+                <ScalarProperty Name="WindStrength_kmph" ColumnName="WindStrength_kmph" />
+                <ScalarProperty Name="CloudCover" ColumnName="CloudCover" />
+                <ScalarProperty Name="Visibility_m" ColumnName="Visibility_m" />
+                <ScalarProperty Name="Precipitation" ColumnName="Precipitation" />
+                <ScalarProperty Name="CountingShipFollowers" ColumnName="CountingShipFollowers" />
+                <ScalarProperty Name="SwellHeight_m" ColumnName="SwellHeight_m" />
+                <ScalarProperty Name="CoordinateSystem" ColumnName="CoordinateSystem" />
+                <ScalarProperty Name="LatitudeStart" ColumnName="LatitudeStart" />
+                <ScalarProperty Name="LongitudeStart" ColumnName="LongitudeStart" />
+                <ScalarProperty Name="LatitudeEnd" ColumnName="LatitudeEnd" />
+                <ScalarProperty Name="LongitudeEnd" ColumnName="LongitudeEnd" />
+                <ScalarProperty Name="CountArea" ColumnName="CountArea" />
+                <ScalarProperty Name="ArcFromBow" ColumnName="ArcFromBow" />
+                <ScalarProperty Name="PositionOnVessel" ColumnName="PositionOnVessel" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vessels">
+            <EntityTypeMapping TypeName="SEABIRDSModel.Vessel">
+              <MappingFragment StoreEntitySet="Vessel">
+                <ScalarProperty Name="VesselID" ColumnName="VesselID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InsertTimeStamp" ColumnName="InsertTimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
