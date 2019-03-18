@@ -83,6 +83,7 @@ namespace SeabirdsAPI.Controllers
         {
             Vessel vessel = new Vessel();
             vessel.Name = Name;
+            vessel.InsertTimeStamp = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

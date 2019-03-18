@@ -136,6 +136,9 @@ namespace SeabirdsAPI.Controllers
             transect.PositionOnVessel = PositionOnVessel;
             transect.InsertTimeStamp = DateTime.Now;
 
+            if (transect.Observer2ID == 0)
+                transect.Observer2ID = null;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
