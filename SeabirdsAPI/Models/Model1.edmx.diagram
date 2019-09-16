@@ -5,14 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="24eff8a37ccb4179846248b312674591" Name="Diagram1">
-        <EntityTypeShape EntityType="SEABIRDSModel.Cruise" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEABIRDSModel.Observation" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Cruise" Width="1.5" PointX="10.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Observation" Width="1.5" PointX="7" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SEABIRDSModel.Observer" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEABIRDSModel.Shipboard" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEABIRDSModel.Species" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEABIRDSModel.Transect" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SEABIRDSModel.Vessel" Width="1.5" PointX="1.5" PointY="14.625" IsExpanded="true" />
-        <AssociationConnector Association="SEABIRDSModel.FK_Cruise_Vessel" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Shipboard" Width="1.5" PointX="5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Species" Width="1.5" PointX="7.375" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Transect" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SEABIRDSModel.Vessel" Width="1.5" PointX="12.5" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="SEABIRDSModel.FK_Cruise_Vessel" ManuallyRouted="false" >
+        </AssociationConnector>
         <AssociationConnector Association="SEABIRDSModel.FK_Observation_Cruise" ManuallyRouted="false" />
         <AssociationConnector Association="SEABIRDSModel.FK_Shipboard_Cruise" ManuallyRouted="false" />
         <AssociationConnector Association="SEABIRDSModel.FK_Observation_Species" ManuallyRouted="false" />
